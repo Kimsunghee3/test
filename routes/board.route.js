@@ -11,5 +11,5 @@ router.get('/modify', controller.getModify)
 // post
 router.post('/write', controller.postWrite)
 router.post('/modify', controller.postModify)
-
+router.post('/view', controller.postdelete)
 module.exports = router

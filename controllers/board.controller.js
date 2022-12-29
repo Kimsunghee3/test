@@ -18,20 +18,24 @@ exports.getView = async(req, res) => {
     res.render('board/view.html',{itemView})
 }
 
-
 exports.postWrite = async(req, res) => {
     await service.serviceWrite(req.body)
     res.redirect('/board/list')
 }
 
 exports.getModify = async(req, res) => {
+    onsole.log(req)
     const itemModify = await service.serviceModify(req.query.index) 
     res.render('board/modify.html', {itemModify})
 }
 
-
 exports.postModify = async(req, res) => {
-    console.log(req.body, req.query.index)
-    await service.serviceModify(req.body, req.query.index)
+    console.log(req)
+    await service.servicePostModify(req.body, req.query.index)
     res.redirect(`/board/view?index=${req.query.index}`)
+}
+
+exports.postdelete = async (req, res) => {
+    await service.serviceDelete(req.query.index)
+    res.redirect('/board/list')
 }
